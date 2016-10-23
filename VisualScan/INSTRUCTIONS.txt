@@ -1,0 +1,24 @@
+This file contains the instructions for using the program written for implementing the Visual 3D Scan. The program was developed using Linux operating system, OpenCV 2.4 and Python 2.7
+
+1.- Start from an already calibrated camera. In order to calibrate the camera, shoot a video about 40 seconds long with a cellphone camera, while moving it over a chess-board calibration pattern (8x6). Store the video with the name "PHONE_NAME.mp4" in the same folder as the "calibrate.py" file. Call the calibration file from a terminal with the following syntax "python calibrate.py PHONE_NAME N_PATTERNS", where N_PATTERNS is the number of patterns to use for calibration. The K matrix will be stored in a file called "PHONE_NAME_cal.txt"
+
+2.- Shoot a video with the following specifications. 
+	- First, a person should position themselves in three different locations: one to the center and close to the camera, and one to the left and another to the right, further away from the camera. 
+	- Then, the person should move back to the center and hold a broomstick of an easily distinguishable color straight above their head. 
+	- Finally, the person should make a full rotation of 360 degrees on a counter-clockwise direction, making sure the broomstick is always visible. 
+	*NOTE: even though the rotation computation is implemented, it is not integrated on the code, since it did not yield precise enough results. Instead of using this, the program assumes uniform rotation. Lines for including the rotation computation are commented out on the "main_algo.py" file.
+
+3.- Call the "videoopen.py" file with the following syntax "python videoopen.py PATH_TO_VIDEO PATH_TO_IMAGES" where PATH_TO_VIDEO is the relative path to de video (including the name) and PATH_TO_IMAGES is the relative path to the folder where the user wishes to save the frames of the video.
+
+4.- Rename three frames corresponding to the overlapped image (refer to the project report for explanation on this) with distinctive names (e.g. OverlapedXjpg).
+
+5.- Modify the constants needed in the "constants.py" file. 
+
+6.- Call the "main_algo.py" file with the following syntax: "python main_algo.py PERSON_HEIGHT[cm]" 
+
+
+7.-	You will be prompted to select the thresholds for the edge detection that you should choose to assure the finding of the corresponding heads and feet of the persons in the image. Shortly after, you will be prompted to select the region of interest for each point.
+
+8.- You will be asked to select the stick to track, later you will have to select the corresponding thresholds to assure the correct segmentation of the region of interest (the stick). Press ESC when this is done 
+
+9.- Select the thresholds related to the edges of the person's body. Notice that the edges of the head should be clear and if possible try to eliminate the arms and stick's edges.
