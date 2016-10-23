@@ -1,0 +1,47 @@
+MAIN_LOOP:
+	reference_distance = distnace_to_person(first_image)
+	for level in person_levels:
+		plane = plane at current height
+		
+		for image in level:
+
+			ray1 = GET_RAY(first_point(image),K)
+			ray2 = GET_RAY(second_point(image),K)
+
+			line1 = GET_LINE(ray1,distance_to_person(image),reference_distance,rotation)
+			line2 = GET_LINE(ray2,distance_to_person(image),reference_distance,rotation)
+
+			point1 = INTERSECT(line1,plane)
+			point2 = INTERSECT(line2,plane)
+			add point1 and point2 to points
+
+
+GET_RAY(point, K):
+	ray = inv(K)*point	// Assume there is no rotation
+	ray = (ray,0)
+	return ray
+
+GET_LINE(ray,distance,ref_distance,rotation):
+	R = [[cos(rotation),0,sin(rotation)],
+		[0,1,0]
+		[-sin(rotation),0,cos(rotation)]
+		[0,0,0]]			// rotation around Y axis
+
+	ray = transposed(R)*ray
+	ray = (ray,0)
+	dif = ref_distance, distance
+	cam_center = [0,0,dif,1]
+	t = [distance*sin(rotation), 0, (1-cos(rotation))*distance,0]	// compute translation of camera center, as a movement around a circumference of radius distance
+	cam_center = cam_center + t
+
+	point1 = ray + cam_center
+	point2 = 2*ray + cam_center		// Two points in the line
+	vector = point1 - point2
+	line.point = cam_center
+	line.vector = vector		// represent line as a point and a vector
+	return line
+
+NOTES: 
+-The reference system used is the one corresponding to the first image.
+-The planes are not assumed to have constant Y coordinates, they are computed from an initial image of a person in three different positions, making the three highest points form a plane.
+-Before this version, we tested another algorithm that consisted in projecting the lines corresponding to each ray to the plane at a certain person height. Then, all the intersections between lines were computed and the ones closest to the centroid of the camera centers were stored.This was the original idea we had discussed with you.

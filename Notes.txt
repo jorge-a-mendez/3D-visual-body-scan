@@ -1,0 +1,10 @@
+- Ask Prof how to detect person. Have tried edge detection, contour extraction, background subtraction. Nothing works.
+	+ Check the last thing we did.
+- Calibration.
+	+ Maybe use calibration pattern?
+	+ Check with the Prof. the method he suggested about three images of the body.
+- Geometric reconstruction (hull).
+	+ How to extract relative rotations of the cameras from the object (box).
+		. Maybe not needed. Intelligent algorithms implemented by OpenCV with corner points from different images.
+	+ 2D hull of every layer made from tangent lines of every image.
+	+ Tangent lines are camera rays.

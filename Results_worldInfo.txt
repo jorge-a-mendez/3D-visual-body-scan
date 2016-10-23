@@ -1,0 +1,26 @@
+Test reference values computation
+Inclination of the heads plane: 10.249
+[array([  2]), array([ 0.02086532,  0.98404417,  0.17669665])]
+
+
+Test function Head2PointDistance
+Center height: 180.00
+Left height: 180.00
+Right height: 180.00
+180deg height: 205.64
+
+
+Test function DistanceToPerson
+Center distance: 181.89
+Left distance: 234.30
+Right distance: 230.39
+0deg distance: 231.10
+
+
+Test function HeightAtHeadDist
+Center original, recomputed: 572, 572
+Left original, recomputed: 491, 490
+Right original, recomputed: 493, 492
+180deg original, recomputed: 544, 492
+
+
